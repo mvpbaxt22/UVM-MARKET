@@ -50,15 +50,6 @@ nav a:hover{ color:var(--accent); }
     text-align:center;
 }
 
-.hero h1{ font-size:2.8rem; margin-bottom:20px; }
-
-.hero p{
-    max-width:750px;
-    margin:auto;
-    color:var(--sub);
-    line-height:1.6;
-}
-
 .container{
     padding:40px;
     display:grid;
@@ -79,10 +70,16 @@ nav a:hover{ color:var(--accent); }
     border-color:var(--accent);
 }
 
-.card h3{
-    color:var(--accent);
+.product-img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-bottom:10px;
 }
-    
+
+.card h3{ color:var(--accent); }
+
 .price{
     color:var(--accent);
     font-weight:bold;
@@ -118,10 +115,23 @@ button:hover{ opacity:0.85; }
 
 .cart-item{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    margin-bottom:8px;
+    justify-content:space-between;
+    margin-bottom:10px;
     font-size:0.9rem;
+}
+
+.cart-info{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.cart-img{
+    width:40px;
+    height:40px;
+    object-fit:cover;
+    border-radius:6px;
 }
 
 .remove-btn{
@@ -163,11 +173,7 @@ footer{
 
 <section class="hero" id="homeSection">
     <h1>BIENVENIDO/A</h1>
-    <p>
-        Este es un marketplace exclusivo para estudiantes, donde podrán encontrar 
-        todo lo que requieran: asesorías, productos, servicios y mucho más, 
-        a precios accesibles y justos para tu cartera.
-    </p>
+    <p>Marketplace exclusivo para estudiantes.</p>
 </section>
 
 <section class="container" id="products" style="display:none;"></section>
@@ -179,146 +185,145 @@ footer{
 </div>
 
 <footer>
-    © 2026 UVM MARKET | Plataforma estudiantil
+    © 2026 UVM MARKET
 </footer>
 
 <script>
+
 const products = [
+{name:"Cuaderno profesional",price:80,category:"productos",image:"img/cuaderno.jpg"},
+{name:"Calculadora científica",price:350,category:"productos",image:"img/calculadora.jpg"},
+{name:"Laptop reacondicionada",price:6500,category:"productos",image:"img/laptop-reacondicionada.jpg"},
+{name:"Laptop gamer básica",price:11500,category:"productos",image:"img/laptop-gamer.jpg"},
+{name:"Tablet para apuntes",price:4800,category:"productos",image:"img/tablet.jpg"},
+{name:"Monitor 24 pulgadas",price:3200,category:"productos",image:"img/monitor.jpg"},
+{name:"Teclado mecánico",price:950,category:"productos",image:"img/teclado.jpg"},
+{name:"Mouse gamer",price:600,category:"productos",image:"img/mouse.jpg"},
+{name:"Mochila ergonómica premium",price:1200,category:"productos",image:"img/mochila.jpg"},
+{name:"Disco SSD 1TB",price:1400,category:"productos",image:"img/ssd.jpg"},
+{name:"Silla ergonómica",price:2500,category:"productos",image:"img/silla.jpg"},
+{name:"Lámpara escritorio LED",price:400,category:"productos",image:"img/lampara.jpg"},
 
-/* PRODUCTOS */
-{name:"Cuaderno profesional", price:80, category:"productos"},
-{name:"Calculadora científica", price:350, category:"productos"},
-{name:"Laptop reacondicionada", price:6500, category:"productos"},
-{name:"Laptop gamer básica", price:11500, category:"productos"},
-{name:"Tablet para apuntes", price:4800, category:"productos"},
-{name:"Monitor 24 pulgadas", price:3200, category:"productos"},
-{name:"Teclado mecánico", price:950, category:"productos"},
-{name:"Mouse gamer", price:600, category:"productos"},
-{name:"Mochila ergonómica premium", price:1200, category:"productos"},
-{name:"Disco SSD 1TB", price:1400, category:"productos"},
-{name:"Silla ergonómica", price:2500, category:"productos"},
-{name:"Lámpara escritorio LED", price:400, category:"productos"},
+{name:"Asesoría de Cálculo",price:120,category:"servicios",image:"img/calculo.jpg"},
+{name:"Tutoría programación",price:180,category:"servicios",image:"img/programacion.jpg"},
+{name:"Clases de Inglés",price:200,category:"servicios",image:"img/ingles.jpg"},
+{name:"Asesoría de Física",price:130,category:"servicios",image:"img/fisica.jpg"},
+{name:"Edición de video académica",price:300,category:"servicios",image:"img/edicion.jpg"},
+{name:"Diseño gráfico para proyectos",price:250,category:"servicios",image:"img/diseno.jpg"},
+{name:"Reparación de laptop",price:400,category:"servicios",image:"img/reparacion.jpg"},
+{name:"Instalación software especializado",price:150,category:"servicios",image:"img/software.jpg"},
+{name:"Coaching académico",price:220,category:"servicios",image:"img/coaching.jpg"},
+{name:"Asesoría de Álgebra Lineal",price:140,category:"servicios",image:"img/algebra.jpg"},
+{name:"Asesoría de Estadística",price:150,category:"servicios",image:"img/estadistica.jpg"},
+{name:"Preparación para exámenes finales",price:180,category:"servicios",image:"img/examenes.jpg"},
+{name:"Traducción inglés-español",price:120,category:"servicios",image:"img/traduccion.jpg"},
+{name:"Redacción de ensayos académicos",price:200,category:"servicios",image:"img/ensayos.jpg"},
+{name:"Optimización y limpieza de PC",price:250,category:"servicios",image:"img/limpieza.jpg"},
+{name:"Armado de computadora gamer",price:600,category:"servicios",image:"img/armado.jpg"},
+{name:"Creación de currículum profesional",price:180,category:"servicios",image:"img/cv.jpg"},
+{name:"Simulacros de entrevista laboral",price:160,category:"servicios",image:"img/entrevista.jpg"},
+{name:"Diseño de portafolio digital",price:220,category:"servicios",image:"img/portafolio.jpg"},
 
-/* SERVICIOS */
-{name:"Asesoría de Cálculo", price:120, category:"servicios"},
-{name:"Tutoría programación", price:180, category:"servicios"},
-{name:"Clases de Inglés", price:200, category:"servicios"},
-{name:"Asesoría de Física", price:130, category:"servicios"},
-{name:"Edición de video académica", price:300, category:"servicios"},
-{name:"Diseño gráfico para proyectos", price:250, category:"servicios"},
-{name:"Reparación de laptop", price:400, category:"servicios"},
-{name:"Instalación software especializado", price:150, category:"servicios"},
-{name:"Coaching académico", price:220, category:"servicios"},
-{name:"Asesoría de Álgebra Lineal", price:140, category:"servicios"},
-{name:"Asesoría de Estadística", price:150, category:"servicios"},
-{name:"Preparación para exámenes finales", price:180, category:"servicios"},
-{name:"Traducción inglés-español", price:120, category:"servicios"},
-{name:"Redacción de ensayos académicos", price:200, category:"servicios"},
-{name:"Optimización y limpieza de PC", price:250, category:"servicios"},
-{name:"Armado de computadora gamer", price:600, category:"servicios"},
-{name:"Creación de currículum profesional", price:180, category:"servicios"},
-{name:"Simulacros de entrevista laboral", price:160, category:"servicios"},
-{name:"Diseño de portafolio digital", price:220, category:"servicios"},
+{name:"Ensalada fitness",price:85,category:"comida",image:"img/ensalada.jpg"},
+{name:"Wrap integral de pollo",price:90,category:"comida",image:"img/wrap.jpg"},
+{name:"Smoothie energético",price:70,category:"comida",image:"img/smoothie.jpg"},
+{name:"Bowl de quinoa",price:95,category:"comida",image:"img/quinoa.jpg"},
+{name:"Sandwich integral vegetariano",price:80,category:"comida",image:"img/sandwich.jpg"},
+{name:"Jugo verde detox",price:65,category:"comida",image:"img/jugo.jpg"},
+{name:"Avena proteica",price:60,category:"comida",image:"img/avena.jpg"},
+{name:"Barra energética natural",price:35,category:"comida",image:"img/barra.jpg"},
+{name:"Té matcha frío",price:55,category:"comida",image:"img/matcha.jpg"},
+{name:"Café americano",price:30,category:"comida",image:"img/americano.jpg"},
+{name:"Café latte",price:45,category:"comida",image:"img/latte.jpg"},
+{name:"Capuchino",price:50,category:"comida",image:"img/capuchino.jpg"},
+{name:"Panini de pavo",price:95,category:"comida",image:"img/panini.jpg"},
+{name:"Hamburguesa clásica estudiantil",price:110,category:"comida",image:"img/hamburguesa.jpg"},
+{name:"Hot dog jumbo",price:45,category:"comida",image:"img/hotdog.jpg"},
+{name:"Pizza individual",price:75,category:"comida",image:"img/pizza.jpg"},
+{name:"Tacos dorados (orden)",price:70,category:"comida",image:"img/tacos.jpg"},
+{name:"Molletes integrales",price:65,category:"comida",image:"img/molletes.jpg"},
+{name:"Fruta con yogurt",price:50,category:"comida",image:"img/fruta.jpg"},
+{name:"Gelatina natural",price:25,category:"comida",image:"img/gelatina.jpg"},
+{name:"Agua fresca natural",price:30,category:"comida",image:"img/agua.jpg"},
+{name:"Refresco",price:28,category:"comida",image:"img/refresco.jpg"},
+{name:"Combo café + croissant",price:65,category:"comida",image:"img/cafecroissant.jpg"},
+{name:"Combo comida corrida estudiante",price:120,category:"comida",image:"img/comidacorrida.jpg"},
 
-/* COMIDA */
-{name:"Ensalada fitness", price:85, category:"comida"},
-{name:"Wrap integral de pollo", price:90, category:"comida"},
-{name:"Smoothie energético", price:70, category:"comida"},
-{name:"Bowl de quinoa", price:95, category:"comida"},
-{name:"Sandwich integral vegetariano", price:80, category:"comida"},
-{name:"Jugo verde detox", price:65, category:"comida"},
-{name:"Avena proteica", price:60, category:"comida"},
-{name:"Barra energética natural", price:35, category:"comida"},
-{name:"Té matcha frío", price:55, category:"comida"},
-{name:"Café americano", price:30, category:"comida"},
-{name:"Café latte", price:45, category:"comida"},
-{name:"Capuchino", price:50, category:"comida"},
-{name:"Panini de pavo", price:95, category:"comida"},
-{name:"Hamburguesa clásica estudiantil", price:110, category:"comida"},
-{name:"Hot dog jumbo", price:45, category:"comida"},
-{name:"Pizza individual", price:75, category:"comida"},
-{name:"Tacos dorados (orden)", price:70, category:"comida"},
-{name:"Molletes integrales", price:65, category:"comida"},
-{name:"Fruta con yogurt", price:50, category:"comida"},
-{name:"Gelatina natural", price:25, category:"comida"},
-{name:"Agua fresca natural", price:30, category:"comida"},
-{name:"Refresco", price:28, category:"comida"},
-{name:"Combo café + croissant", price:65, category:"comida"},
-{name:"Combo comida corrida estudiante", price:120, category:"comida"},
-
-/* OFERTAS */
-{name:"Kit inicio de semestre", price:500, category:"ofertas"},
-{name:"Combo desayuno saludable", price:120, category:"ofertas"},
-{name:"Pack gamer estudiante", price:12500, category:"ofertas"},
-{name:"Laptop + mochila descuento", price:7000, category:"ofertas"},
-{name:"Combo café + snack fit", price:60, category:"ofertas"},
-{name:"Pack útiles básicos descuento", price:250, category:"ofertas"},
-{name:"3 smoothies al precio de 2", price:140, category:"ofertas"},
-{name:"Descuento asesoría mensual", price:400, category:"ofertas"},
-{name:"Combo productividad (tablet + teclado)", price:5200, category:"ofertas"},
-{name:"Paquete fitness semanal", price:300, category:"ofertas"}
-
+{name:"Kit inicio de semestre",price:500,category:"ofertas",image:"img/kit.jpg"},
+{name:"Combo desayuno saludable",price:120,category:"ofertas",image:"img/desayuno.jpg"},
+{name:"Pack gamer estudiante",price:12500,category:"ofertas",image:"img/packgamer.jpg"},
+{name:"Laptop + mochila descuento",price:7000,category:"ofertas",image:"img/laptopmochila.jpg"},
+{name:"Combo café + snack fit",price:60,category:"ofertas",image:"img/cafesnack.jpg"},
+{name:"Pack útiles básicos descuento",price:250,category:"ofertas",image:"img/utiles.jpg"},
+{name:"3 smoothies al precio de 2",price:140,category:"ofertas",image:"img/smoothies.jpg"},
+{name:"Descuento asesoría mensual",price:400,category:"ofertas",image:"img/asesoriamensual.jpg"},
+{name:"Combo productividad (tablet + teclado)",price:5200,category:"ofertas",image:"img/productividad.jpg"},
+{name:"Paquete fitness semanal",price:300,category:"ofertas",image:"img/fitness.jpg"}
 ];
 
 let cart=[];
 
 function showHome(){
-    document.getElementById("homeSection").style.display="block";
-    document.getElementById("products").style.display="none";
+document.getElementById("homeSection").style.display="block";
+document.getElementById("products").style.display="none";
 }
 
 function filterCategory(cat){
-    document.getElementById("homeSection").style.display="none";
-    const container=document.getElementById("products");
-    container.style.display="grid";
-    container.innerHTML="";
-    const filtered=products.filter(p=>p.category===cat);
-    filtered.forEach((p,index)=>{
-        container.innerHTML+=`
-        <div class="card">
-            <h3>${p.name}</h3>
-            <div class="price">$${p.price}</div>
-            <button onclick="addToCart(${index})">Agregar</button>
-        </div>`;
-    });
+document.getElementById("homeSection").style.display="none";
+const container=document.getElementById("products");
+container.style.display="grid";
+container.innerHTML="";
+const filtered=products.filter(p=>p.category===cat);
+
+filtered.forEach((p)=>{
+container.innerHTML+=`
+<div class="card">
+<img src="${p.image}" class="product-img">
+<h3>${p.name}</h3>
+<div class="price">$${p.price}</div>
+<button onclick="addToCart(${products.indexOf(p)})">Agregar</button>
+</div>`;
+});
 }
 
-function addToCart(index){ cart.push(products[index]); updateCart(); }
+function addToCart(index){
+cart.push(products[index]);
+updateCart();
+}
 
-function removeFromCart(i){ cart.splice(i,1); updateCart(); }
+function removeFromCart(i){
+cart.splice(i,1);
+updateCart();
+}
 
 function updateCart(){
-    const cartDiv=document.getElementById("cartItems");
-    const totalDiv=document.getElementById("total");
-    cartDiv.innerHTML="";
-    let total=0;
-    cart.forEach((item,i)=>{
-        total+=item.price;
-        cartDiv.innerHTML+=`
-        <div class="cart-item">
-            <span>${item.name} - $${item.price}</span>
-            <button class="remove-btn" onclick="removeFromCart(${i})">X</button>
-        </div>`;
-    });
-    document.getElementById("count").innerText=cart.length;
-    totalDiv.innerText="Total: $"+total;
+const cartDiv=document.getElementById("cartItems");
+const totalDiv=document.getElementById("total");
+cartDiv.innerHTML="";
+let total=0;
+
+cart.forEach((item,i)=>{
+total+=item.price;
+cartDiv.innerHTML+=`
+<div class="cart-item">
+<div class="cart-info">
+<img src="${item.image}" class="cart-img">
+<span>${item.name} - $${item.price}</span>
+</div>
+<button class="remove-btn" onclick="removeFromCart(${i})">X</button>
+</div>`;
+});
+
+document.getElementById("count").innerText=cart.length;
+totalDiv.innerText="Total: $"+total;
 }
 
 function toggleCart(){
-    const box=document.getElementById("cartBox");
-    box.style.display=box.style.display==="none"?"block":"none";
+const box=document.getElementById("cartBox");
+box.style.display=box.style.display==="none"?"block":"none";
 }
+
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
